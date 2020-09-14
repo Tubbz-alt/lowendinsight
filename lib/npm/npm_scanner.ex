@@ -29,6 +29,7 @@ defmodule Npm.Scanner do
 
     path_to_yarn_lock = Enum.find(paths_to_npm_files, &String.contains?(&1, "yarn#{option}lock"))
 
+    IO.inspect path_to_yarn_lock, label: "YARN!"
     if path_to_package_json do
       {direct_deps, deps_count} =
         File.read!(path_to_package_json)
@@ -49,6 +50,7 @@ defmodule Npm.Scanner do
             File.read!(path_to_yarn_lock)
             |> Npm.Yarnlockfile.parse!()
 
+          IO.inspect yarn_lib_map, label: "YARN_MAP"
           yarn_result_map =
             Enum.map(yarn_lib_map, fn {lib, _version} ->
               query_npm(lib)
@@ -89,7 +91,7 @@ defmodule Npm.Scanner do
           {result_map, [], deps_count}
       end
     else
-      {:error, "Must contain a package.json file"}
+      {:error, "Must contain a package.json or yarn.lock file"}
     end
   end
 

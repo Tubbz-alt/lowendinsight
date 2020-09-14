@@ -49,8 +49,8 @@ defmodule ProjectIdent do
 
     node_type = %ProjectType{
       name: :node,
-      path: "**",
-      files: ["package*.json", "yarn.lock"]
+      path: "./",
+      files: ["yarn.lock,package.json"]
     }
 
     go_type = %ProjectType{

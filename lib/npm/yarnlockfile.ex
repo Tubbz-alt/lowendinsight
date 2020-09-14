@@ -24,9 +24,13 @@ defmodule Npm.Yarnlockfile do
   @impl Parser
   def file_names(), do: ["yarn.lock"]
 
-  defp extract_deps({:ok, %{"comments" => _} = map}), do: Map.delete(map, "comments")
+  defp extract_deps({:ok, %YarnParser.YarnLock{:dependencies => deps}}), do: deps
 
+   #defp extract_deps({:ok, %{"comments" => _} = map}), do: Map.delete(map, "comments")
+
+   #defp extract_deps({:ok, %{"metadata" => _} = map}), do: Map.delete(map, "metadata")
   defp remove_version_labels(deps) do
+    IO.inspect deps
     Enum.reduce(deps, %{}, fn {dep_key, %{"version" => version}}, acc ->
       dep_name = List.first(String.split(dep_key, ~r{@.+}, parts: 2))
 

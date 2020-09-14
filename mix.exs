@@ -40,11 +40,12 @@ defmodule GithubModule.MixProject do
       {:uuid, "~> 1.1"},
       {:ex_doc, "~> 0.21", runtime: false},
       {:credo, "~> 0.10", except: :prod, runtime: false},
-      {:mix_audit, "~> 0.1", only: [:dev, :test], runtime: false},
+#      {:mix_audit, "~> 0.1", only: [:test], runtime: false},
       {:json_xema, "~> 0.3"},
       {:temp, "~> 0.4"},
       {:excoveralls, "~> 0.10", only: :test},
-      {:yarn_parser, "~> 0.3.1"}
+      {:yarn_parser, "~> 0.4"}
+      #{:yarn_parser, git: "https://github.com/doorgan/yarn_parser", branch: "fix/yarn_v2"}
     ]
   end
 

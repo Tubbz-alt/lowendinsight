@@ -9,13 +9,14 @@ defmodule PackageJSONTest do
     {lib_map, deps_count} = Npm.Packagefile.parse!(File.read!("./test/fixtures/packagejson"))
 
     parsed_package_json = [
+      {"@ampproject/toolbox-optimizer", "2.5.5"},
       {"async", "2.1.4"},
       {"benchmark", "2.1.3"},
       {"chalk", "1.1.3"},
       {"request", "2.88.0"}
     ]
 
-    assert deps_count == 4
+    assert deps_count == 5
     assert parsed_package_json == lib_map
   end
 
